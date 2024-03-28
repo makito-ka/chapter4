@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Insert title here</title>
+</head>
+<body class="container w-75">
+	<h1 class="display-4 mb-4" th:text="${title}"></h1>
+	<div class="mb-2">
+		<ul class="list-group list-group-horizontal">
+			<li class="list-group-item"><a class="navbar-brand" href="/">トップ</a></li>
+			<li class="list-group-item"><a class="navbar-brand" href="/create">商品登録</a></li>
+		</ul>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>商品名</th>
+				<th>費目</th>
+				<th>金額</th>
+				<th>詳細</th>
+				<th>削除</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!--ダミーデータの一覧表示-->
+			<tr th:each="item : ${data}">
+				<td th:text="${item.name}"></td>
+				<td th:text="${item.item}"></td>
+				<td th:text="${item.money}"></td>
+				<td>
+					<!--動的にURLを生成（ID）-->
+					<a th:href="@{/read/{id} (id = ${item.id})}">詳細</a>
+				</td>
+				<td>
+					<a th:href="@{/delete/{id} (id = ${item.id})}">削除</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
